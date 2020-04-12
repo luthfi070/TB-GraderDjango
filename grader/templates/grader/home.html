@@ -1,0 +1,99 @@
+{% load static %}
+ <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Grader</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+    .navbar{
+    margin-right:80px;
+    margin-left:80px;
+    margin-top:10px;
+    }
+    img{
+      margin-top:-60px;
+      margin-left:185px;
+      width:65%;
+      border-radius: 10%;
+    }
+    body{
+      background-color: #5C6BC0;
+    }
+</style>
+  </head>
+  <body background src="{%static "grader/picture/background.jpg" %}">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg rounded-pill">
+        <a class="navbar-brand" href="/">Grader</a>
+        <a class="navbar-link" href="{% url 'login' %}">Login</a>
+        {% if user.is_authenticated %}
+        <a class="navbar-link" href="{% url 'logout' %}">logout</a>
+        {% endif %}
+        <a class="navbar-link">Selamat Datang, {{user}} !</a>
+    </nav>
+    <br>
+    <div class="container cs-content">
+    <div class="row cs-section-header">
+        <img src="{% static "grader/picture/school_home.jpg" %}" alt="My image">
+    </div>
+    <div class="row cs-form-add">
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">{{user}}</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Singer</th>
+                <th scope="col">Rating</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+          
+            <tr>
+                
+                <td>
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                    </a>
+                    <a class="btn btn-sm btn-outline-danger"  data-toggle="modal" data-target="#exampleModalCenter">
+                      <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                    </a>
+                </td>
+            </tr>
+              <tr>
+                <td colspan="6" class="cs-text-center cs-empty-table"> There is no song yet. Please add a song ! </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>{{user}}</p>
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-primary" data-dismiss="modal">Cancel</a>
+              <a class="btn btn-danger" id="btn-delete" href="">Delete</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    </div>
+
+  </body>
+</html>
