@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
       html, html a {
+        font-family: 'Segoe UI Semibold';
+        src: local('Segoe UI Semibold');
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -63,6 +65,14 @@
       border-radius: 20px;
       width: 10%;
     }
+    .auth3{
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 20px;
+      width: 20%;
+    }
     .idn{
       font-family: 'Segoe UI Semibold';
       font-style: normal;
@@ -87,7 +97,10 @@
       margin: 4px 502px;
       width: 10%;
       margin-top: -20px;
-
+    }
+    .navbar1{
+      margin-left: 80px;
+      width: 88%;
     }
 </style>
   </head>
@@ -101,6 +114,8 @@
         {% endif %}  
         {% if status == 'logged in' %}
         <a class="auth2 btn btn-primary btn-toolbar navbar-link" href="{% url 'logout' %}">logout</a>
+        &nbsp;&nbsp;
+        <a class="auth3 btn btn-primary btn-toolbar navbar-link" href="">Selamat datang,{{user}}</a>
         {% endif %}  
     </nav>
     <br>
