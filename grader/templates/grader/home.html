@@ -32,7 +32,7 @@
       align-items: center;
       margin-top: 190px;
     }
-    .btn{
+    .lh{
       padding: 10px 20px;
       text-align: center;
       text-decoration: none;
@@ -47,19 +47,61 @@
     .btn:hover {
     background-color: #00a8ff;
     }
+    .auth1{
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 20px;
+      width: 10%;
+    }
+    .auth2{
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 20px;
+      width: 10%;
+    }
+    .idn{
+      font-family: 'Segoe UI Semibold';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      src: local('Segoe UI Semibold');
+    }
+    .nil{
+      width: 106px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 50px;
+    }
+    .nl{
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 20px;
+      margin: 4px 502px;
+      width: 10%;
+      margin-top: -20px;
+
+    }
 </style>
   </head>
   <body background src="{%static "grader/picture/background.jpg" %}">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg rounded-pill">
         <a class="navbar-brand" href="/">Grader</a>
         {% if status == 'logged out' %}
-        <a class="navbar-link" href="{% url 'signup' %}">Sign Up</a>
-        <a class="navbar-link" href="{% url 'login' %}">Login</a>
+        <a class="auth1 btn btn-primary btn-toolbar navbar-link" href="{% url 'signup' %}" >Sign Up</a>
+        &nbsp;&nbsp;
+        <a class="auth2 btn btn-primary btn-toolbar navbar-link" href="{% url 'login' %}">Login</a>
         {% endif %}  
         {% if status == 'logged in' %}
-        <a class="navbar-link" href="{% url 'logout' %}">logout</a>
+        <a class="auth2 btn btn-primary btn-toolbar navbar-link" href="{% url 'logout' %}">logout</a>
         {% endif %}  
-        <a class="navbar-link">Selamat Datang, {{user}} !</a>
     </nav>
     <br>
     <div class="container cs-content">
@@ -68,13 +110,24 @@
         <font color="#0097e6">
           <p class="header2 container text-left">Grade your student with real time data, built with django and sqlite. UwU</p>
         </font>
-        <button type="button" class="btn btn-sm btn-dark">Login</button>
+        {% if status == 'logged out' %}
+        <a class="lh btn btn-sm btn-dark" href="{% url 'login' %}">Login</a>
+        {% endif %} 
+        {% if status == 'logged in' %}
+        <a class="lh btn btn-sm btn-dark" href="{% url 'iden' %}">Identify</a>
+        {% endif %}
         <p class="container text-left"></p>
         <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
+    <hr size="30">
+    <p class="idn text-center">Check your grade!</p>
     <div class="row cs-form-add">
     </div>
-
+    <p class="idn text-center">Nilai
+    <br><br><br><br><br><br>
+    <img class="nil" src="{%static "grader/picture/grade.png" %}" alt="IMG" style="float: center;"></p>
+    <button type="button" class="nl btn btn-sm btn-dark">Nilai</button>
+    <hr>
     <div class="row">
         <table class="table">
             <thead>

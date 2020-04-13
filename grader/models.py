@@ -16,3 +16,10 @@ class t_akun_mahasiswa(models.Model):
     def __unicode__(self):
         return self.username
 
+class t_pengguna(models.Model):
+    username = models.CharField(max_length=15)
+    tipe = models.CharField(max_length=15)
+
+    def __unicode__(self):
+        return self.username
+

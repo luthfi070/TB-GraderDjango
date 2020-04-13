@@ -5,7 +5,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    <link rel="stylesheet" href="{%static "grader/login_css.css" %}">
+	<link rel="stylesheet" href="{%static "grader/login_css.css" %}">
+	<style>
+		body, html{
+			background-color: #2f3640;
+		}
+		.login100-form-btn {
+			background: #2f3640;
+		}
+		form{
+			margin-right: 120px;
+			margin-left: 250px;
+  			width: 50%;
+  			padding: 10px;
+		}
+	</style>
 </head>
 <body>
 	
@@ -13,13 +27,11 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="{%static "grader/picture/logo_login.png" %}" alt="IMG">
 				</div>
-
 				<form method="POST" class="login100-form validate-form">
 				{% csrf_token %}
 					<span class="login100-form-title">
-						Login Pelajar
+						Login
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">

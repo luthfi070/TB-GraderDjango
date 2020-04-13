@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CreateMahasiswa, RegisterForm
-from .models import t_akun_mahasiswa
+from .forms import CreateMahasiswa, RegisterForm, Jenis
+from .models import t_akun_mahasiswa, t_pengguna
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
@@ -59,6 +59,16 @@ def register(request):
         form = RegisterForm()
 
     return render(request, 'grader/signup.html', {"form" : form})
+
+def identif(request):
+    if request.method == "POST":
+        form = Jenis(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+    else:
+        form = Jenis()
+        return render(request, 'grader/identif.html', {'form' : form, 'pengguna' : t_pengguna.objects.all()})
 
 def BuatMhs(request):
     insert = CreateMahasiswa()
