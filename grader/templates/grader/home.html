@@ -8,35 +8,69 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
+      html, html a {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
     .navbar{
     margin-right:80px;
     margin-left:80px;
     margin-top:10px;
     }
     img{
-      margin-top:-60px;
+      margin-top:-140px;
       margin-left:185px;
-      width:65%;
-      border-radius: 10%;
+      width: 32%;
+      border-radius: 1%;
     }
-    body{
-      background-color: #5C6BC0;
+    .header {
+      font-family: 'Segoe UI Semibold';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 45px;
+      src: local('Segoe UI Semibold');
+      align-items: center;
+      margin-top: 190px;
+    }
+    .btn{
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 20px;
+      margin-top: 39px;
+      margin-left: -532px;
+      width: 10%;
+    }
+    .btn:hover {
+    background-color: #00a8ff;
     }
 </style>
   </head>
   <body background src="{%static "grader/picture/background.jpg" %}">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg rounded-pill">
         <a class="navbar-brand" href="/">Grader</a>
+        {% if status == 'logged out' %}
+        <a class="navbar-link" href="{% url 'signup' %}">Sign Up</a>
         <a class="navbar-link" href="{% url 'login' %}">Login</a>
-        {% if user.is_authenticated %}
+        {% endif %}  
+        {% if status == 'logged in' %}
         <a class="navbar-link" href="{% url 'logout' %}">logout</a>
-        {% endif %}
+        {% endif %}  
         <a class="navbar-link">Selamat Datang, {{user}} !</a>
     </nav>
     <br>
     <div class="container cs-content">
     <div class="row cs-section-header">
-        <img src="{% static "grader/picture/school_home.jpg" %}" alt="My image">
+        <p class="header container text-left">GRADER</p>
+        <font color="#0097e6">
+          <p class="header2 container text-left">Grade your student with real time data, built with django and sqlite. UwU</p>
+        </font>
+        <button type="button" class="btn btn-sm btn-dark">Login</button>
+        <p class="container text-left"></p>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <div class="row cs-form-add">
     </div>
@@ -54,7 +88,7 @@
             </tr>
             </thead>
             <tbody>
-          
+            
             <tr>
                 
                 <td>

@@ -1,4 +1,6 @@
+from django import forms
 from django.db import models
+
 
 # Create your models here.
 class t_akun_mahasiswa(models.Model):
@@ -13,3 +15,4 @@ class t_akun_mahasiswa(models.Model):
     )
     def __unicode__(self):
         return self.username
+

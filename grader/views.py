@@ -1,18 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CreateMahasiswa
+from .forms import CreateMahasiswa, RegisterForm
 from .models import t_akun_mahasiswa
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.
 def home(request):
-    if not request.user.is_authenticated:
+    if request.user.is_authenticated:
         parameters = {
-            'status' : 'logged out', 
+            'status' : 'logged in', 
         }
         return render(request, 'grader/home.html', parameters)
     else:
         parameters = {
-            'status' : 'logged in', 
+            'status' : 'logged out', 
         }
         return render(request, 'grader/home.html', parameters)
     
@@ -46,6 +48,17 @@ def logoutView(request):
             
         return redirect('home')
     return render(request, 'grader/logout.html', context)
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'grader/signup.html', {"form" : form})
 
 def BuatMhs(request):
     insert = CreateMahasiswa()

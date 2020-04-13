@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+<body>
+    {% block title %}Create an Account{% endblock %}
+    
+    {% block content %}
+        <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" class="btn btn-success">Register</button>
+        </form>
+    {% endblock %}
+</body>
+</html>
