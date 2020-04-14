@@ -1,18 +1,41 @@
+{%load static%}
 <html>
-    <head>
-        <title>Sign Up</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    </head>
+<head>
+<title>{{page_title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	<link rel="stylesheet" href="{%static "grader/login_css.css" %}">
+	<style>
+		body, html{
+			background-color: #2f3640;
+		}
+		.login100-form-btn {
+			background: #2f3640;
+		}
+		form{
+			margin-right: 120px;
+			margin-left: 250px;
+  			width: 50%;
+  			padding: 10px;
+		}
+	</style>
+</head>
 <body>
-    {% block title %}Create an Account{% endblock %}
-    
-    {% block content %}
-        <form method="POST" class="form-group">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button type="submit" class="btn btn-success">Register</button>
-        </form>
-    {% endblock %}
-</body>
-</html>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+			<form method="POST" class="login100-form validate-form">
+            {% load crispy_forms_tags %}
+            {% block content %}
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Save person</button>
+            </form>
+            {% endblock %}
+				</form>
+			</div>
+		</div>
+	</div>
+	</body>

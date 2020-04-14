@@ -1,11 +1,47 @@
+{%load static%}
 <html>
 <head>
 <title>{{page_title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	<link rel="stylesheet" href="{%static "grader/login_css.css" %}">
+	<style>
+		body, html{
+            background-color: #2f3640;
+            font-family: 'Segoe UI Semibold';
+        src: local('Segoe UI Semibold');
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+		}
+		.login100-form-btn {
+			background: #2f3640;
+		}
+		form{
+			margin-right: 120px;
+            margin-left: 280px;
+            margin-top: -110px;
+  			width: 50%;
+  			padding: 10px;
+        }
+        .tengah{
+            font-weight: bolder;
+        }
+	</style>
 </head>
 <body>
-    <h1>{{page_title}}</h1>
-    <p>Yakin ingin logout ?</p>
-
+     
+	<div class="limiter">
+	<div class="container-login100">
+	<div class="wrap-login100">
+    
     <form method="POST">
     {% csrf_token %}
-    <input type="submit" name="logout">
+    <p class="tengah">Anda yakin ingin keluar ?</p>
+    <input type="submit" class="btn btn-danger" name="logout">
+    <a href="{% url 'home' %}" class="btn btn-warning">Kembali</a>
+    </form>
+</div>
+</div>
+</div>
+</body>

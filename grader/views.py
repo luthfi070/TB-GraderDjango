@@ -11,6 +11,19 @@ def home(request):
         parameters = {
             'status' : 'logged in', 
         }
+        usrn = request.user.username
+        tipe = t_pengguna.objects.filter(username=usrn, tipe='Dosen').exists()
+        print(tipe)
+        if tipe == True:
+            parameters = {
+                'tipe' : 'dosen',
+                'status2' : 'verifikasi',
+            }
+        else:
+            parameters = {
+                'tipe' : 'mahasiswa',
+                'status2' : 'verifikasi', 
+            }
         return render(request, 'grader/home.html', parameters)
     else:
         parameters = {
@@ -31,6 +44,9 @@ def loginView(request):
 
         if user is not None:
             login(request,user)
+            context={
+        'status' : 'logged in',
+        }
         else:
             return redirect('login')
         return redirect('home')
@@ -54,6 +70,8 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+        else:
+            return redirect('signup')
         return redirect('home')
     else:
         form = RegisterForm()
