@@ -126,24 +126,18 @@
     <br>
     <div class="container cs-content">
     <div class="row cs-section-header">
-        <p class="header container text-left">GRADER</p>
+        <p class="header container text-left">GRADER{{status2}}</p>
         <font color="#0097e6">
           <p class="header2 container text-left">Grade your student with real time data, built with django and sqlite. UwU</p>
         </font>
         {% if status == 'logged out' %}
         <a class="lh btn btn-sm btn-dark" href="{% url 'login' %}">Login</a>
-        {% elif status == 'logged in' %}
-        <a class="lh btn btn-sm btn-dark" href="{% url 'iden' %}">Identify</a>
-        <!---- Benerin else if disini -->
         {% elif status2 == 'verifikasi' %}
+        <a class="lh btn btn-sm btn-dark" href="{% url 'iden' %}">Identify</a>
         {% endif %}
+        <!---- Benerin else if disini -->
         <p class="container text-left"></p>
-        {% if status == 'logged in' and tipe == 'dosen' %}
-        &nbsp;
-        {% endif %}
-        {% if tipe == 'mahasiswa' %}
         
-        {% endif %}
         <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <hr size="30">
@@ -156,7 +150,7 @@
     <img class="nil" src="{%static "grader/picture/grade.png" %}" alt="IMG" style="float: center;"></p>
     <button type="button" class="nl btn btn-sm btn-dark">Nilai</button>
     {% elif tipe == 'dosen' %}
-    <p>Anda dosen</p>
+    <a class="btn btn-sm btn-dark" href="{% url 'dosen' %}">Matkul</a>
     {% endif %}
     <hr>
     <div class="row">

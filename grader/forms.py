@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import t_akun_mahasiswa, t_pengguna
+from .models import t_akun_mahasiswa, t_pengguna, t_matkul
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -11,7 +11,6 @@ class CreateMahasiswa(ModelForm):
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
-    jenis = forms.CharField(max_length=30)
 
     class Meta:
         model = User
@@ -20,5 +19,10 @@ class RegisterForm(UserCreationForm):
 class Jenis(ModelForm):
     class Meta:
         model = t_pengguna
-        fields = ['tipe','username']
+        fields = ['tipe','username','kelas']
+
+class CreateMatkul(ModelForm):
+    class Meta:
+        model = t_matkul
+        fields = ['nama_mapel','username_dosen','kelas']
     

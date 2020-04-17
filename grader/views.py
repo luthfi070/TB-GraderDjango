@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .forms import CreateMahasiswa, RegisterForm, Jenis
-from .models import t_akun_mahasiswa, t_pengguna
+from .forms import CreateMahasiswa, RegisterForm, Jenis, CreateMatkul
+from .models import t_akun_mahasiswa,t_pengguna, t_matkul
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
@@ -45,7 +45,7 @@ def loginView(request):
         if user is not None:
             login(request,user)
             context={
-        'status' : 'logged in',
+        'status5' : 'logged in',
         }
         else:
             return redirect('login')
@@ -88,6 +88,19 @@ def identif(request):
         form = Jenis()
         return render(request, 'grader/identif.html', {'form' : form, 'pengguna' : t_pengguna.objects.all()})
 
+def matkulView(request):
+    return render(request, 'grader/matkul.html', {'matpel' : t_matkul.objects.all()})
+
+def createMatkul(request):
+    if request.method == "POST":
+        form = CreateMatkul(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+    else:
+        form = CreateMatkul(request.POST)
+        return render(request, 'grader/tambahMatkul.html', {'form' : form})
+
 def BuatMhs(request):
     insert = CreateMahasiswa()
     if request.method == 'POST':
@@ -97,3 +110,23 @@ def BuatMhs(request):
             return render(request, 'grader/home.html')
         else:
             return HttpResponse("Gagal Brow")
+
+def editMapel(request, pk):
+    mapel = get_object_or_404(t_matkul, pk=pk)
+    status = 'success'
+    titleValue = t_matkul.objects.filter(pk=pk).values('nama_mapel')[0];
+    mapel_title = titleValue['nama_mapel']
+    
+    if request.method == 'POST':
+        post_form = CreateMatkul(request.POST, instance=mapel)
+        if post_form.is_valid():
+            post_form.save()
+            return redirect('dosen')
+    else:
+        form = CreateMatkul(instance=mapel)
+        return render(request, 'grader/editMatpel.html', {'form': form, 'nama_mapel': mapel_title })
+
+def deleteMapel(request, pk):
+    mapel = t_matkul.objects.get(pk=pk)
+    mapel.delete()
+    return redirect('dosen')
