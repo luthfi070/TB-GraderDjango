@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .forms import CreateMahasiswa, RegisterForm, Jenis, CreateMatkul
-from .models import t_akun_mahasiswa,t_pengguna, t_matkul
+from .forms import CreateMahasiswa, RegisterForm, Jenis, CreateMatkul, CreateNilai
+from .models import t_akun_mahasiswa,t_pengguna, t_matkul, t_nilai
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
@@ -101,16 +101,6 @@ def createMatkul(request):
         form = CreateMatkul(request.POST)
         return render(request, 'grader/tambahMatkul.html', {'form' : form})
 
-def BuatMhs(request):
-    insert = CreateMahasiswa()
-    if request.method == 'POST':
-        insert = CreateMahasiswa(request.post)
-        if insert.is_valid():
-            insert.save()
-            return render(request, 'grader/home.html')
-        else:
-            return HttpResponse("Gagal Brow")
-
 def editMapel(request, pk):
     mapel = get_object_or_404(t_matkul, pk=pk)
     status = 'success'
@@ -130,3 +120,28 @@ def deleteMapel(request, pk):
     mapel = t_matkul.objects.get(pk=pk)
     mapel.delete()
     return redirect('dosen')
+
+def nilaiMapel(request):
+    nama = request.user.username
+    return render(request, 'grader/lihatMapel.html', {'matpel' : t_matkul.objects.filter(username_dosen=nama)})
+
+def tambahNilai(request, kelas, nm_map):
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        return render(request, 'grader/beriNilai.html', {'matpel' : t_pengguna.objects.filter(kelas=kelas), 'nilai' : t_nilai.objects.filter(nama=nama).filter(kode_mapel=nm_map)})
+    return render(request, 'grader/beriNilai.html', {'matpel' : t_pengguna.objects.filter(kelas=kelas)})
+
+def beriNilai(request, nama, kelas):
+    print(nama)
+    print(kelas)
+    nama_a = t_nilai.objects.filter(nama=nama, kelas=kelas).values('nama')[0]
+    print(nama_a)
+    if request.method == "POST":
+        form = CreateNilai(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+    else:
+        form = CreateNilai(request.POST)
+        return render(request, 'grader/tambahNilai.html', {'form' : form, 'nama' : nama_a})
+

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import t_akun_mahasiswa, t_pengguna, t_matkul
+from .models import t_akun_mahasiswa, t_pengguna, t_matkul, t_nilai
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -24,5 +24,10 @@ class Jenis(ModelForm):
 class CreateMatkul(ModelForm):
     class Meta:
         model = t_matkul
-        fields = ['nama_mapel','username_dosen','kelas']
+        fields = ['nama_mapel','username_dosen','kelas','nama_dosen']
+
+class CreateNilai(ModelForm):
+    class Meta:
+        model = t_nilai
+        fields = ['nilai','index','nama','kelas','nama_mapel','kode_mapel']
     
