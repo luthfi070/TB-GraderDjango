@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+            html, html a {
+        font-family: 'Segoe UI Semibold';
+        src: local('Segoe UI Semibold');
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+            .navbar{
+        margin-right:80px;
+        margin-left:80px;
+        margin-top:10px;
+            }
+            .auth1{
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 20px;
+      width: 100%;
+    }
+    .auth2{
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 20px;
+      width: 15%;
+      margin-top: 100px;
+      margin-left: 80px;
+    }
+    .table {
+    border-radius: 5px;
+    width: 85%;
+    margin: 0px auto;
+    float: none;
+    }
+    .tengah{
+        margin-left: 400px;
+    }
+        </style>    
+        <link href="http://cdn.pydata.org/bokeh/release/bokeh-2.0.2.min.css" rel=”stylesheet” type=”text/css">
+        <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.2.min.css" rel=”stylesheet” type=”text/css”>
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.0.2.min.js"></script>
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.2.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        {{ script | safe }}
+        <title>Data visualisasi Nilai</title>
+    </head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg rounded-pill">
+        <a class="navbar-brand" href="/">Grader</a>
+        <a href="{% url 'home' %}"><button class="auth1 btn btn-primary">Home</button></a>
+        </nav>
+        <br><br>
+        <div class="tengah">
+            {{ div | safe}}
+        </div>
+</body>
+</html>

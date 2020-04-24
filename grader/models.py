@@ -37,9 +37,9 @@ class t_matkul(models.Model):
     kode_mapel = models.CharField(max_length=20, default='kode')
     username_dosen = models.CharField(max_length=15)
     KELAS_CHOICES = (
-        ('SI 43 01','SI 43 01'),
-        ('SI 43 02','SI 43 02'),
-        ('SI 43 03','SI 43 03'),
+        ('SI4301','SI4301'),
+        ('SI4302','SI4302'),
+        ('SI4303','SI4303'),
     )
     kelas = models.CharField(max_length=15, choices=KELAS_CHOICES, default='SI 43 01')
     nama_dosen = models.CharField(max_length=50, default='nama')
@@ -57,9 +57,9 @@ class t_nilai(models.Model):
     index = models.CharField(max_length=5, choices=NILAI_CHOICES, default='A')
     nama = models.CharField(max_length=50)
     KELAS_CHOICES = (
-        ('SI 43 01','SI 43 01'),
-        ('SI 43 02','SI 43 02'),
-        ('SI 43 03','SI 43 03'),
+        ('SI4301','SI4301'),
+        ('SI4302','SI4302'),
+        ('SI4303','SI4303'),
     )
     kelas = models.CharField(max_length=15, choices=KELAS_CHOICES, default='SI 43 01')
     nama_mapel = models.CharField(max_length=50)

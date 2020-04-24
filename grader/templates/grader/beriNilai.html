@@ -53,26 +53,34 @@
             <tr>
                 <th scope="col">Nama Siswa</th>
                 <th scope="col">kelas</th>
-                <th scope="col">Nilai saat ini</th>
+                <th scope="col">Nilai saat ini</th>             
             </tr>
             </thead>
-            <tbody>            
+            <tbody>          
     {% for matkuls in matpel %}
-    <td><input type="readonly" value="{{ matkuls.username }}" style="border:0" name="nama" readonly></td>
+    <td><input type="readonly" value="{{ matkuls.nama_lengkap }}" style="border:0" name="nama" readonly></td>
     <td>{{ matkuls.kelas }}</td>
     <form method="POST">
         {% csrf_token %}
         <td><button type="submit" class="btn btn-outline-primary">Tampilkan nilai saat ini</button></td>
         <td><input type="hidden" value="{{ matkuls.username }}" style="border:0" name="nama" readonly></td>
-        <td><a class="btn btn-outline-primary" href="{% url 'tambahNilai' matkuls.nama_lengkap matkuls.kelas %}">Beri nilai</a></td>
+        {% for kodes in nama %} 
+        <td><a class="btn btn-outline-primary" href="{% url 'tambahNilai' matkuls.nama_lengkap matkuls.kelas kodes.kode_mapel %}">Beri nilai</a></td>
+        {% endfor %} 
 </form>
 </tr>
 {% endfor %}
 {% for nilais in nilai%}
 <td>siswa memiliki nilai : {{ nilais.nilai }}</td>
+<td><a class="btn btn-outline-primary" href="{% url 'editNilai' nilais.id %}">Edit nilai</a></td>
 {% endfor %}
   <tr>
-    <td colspan="6" class="cs-text-center cs-empty-table"> Silahkan tekan tombol beri nilai kepada kelas yang ingin diberi nilai</td>
+    {% for kodes in nama %}  
+    <td><a href="{% url 'datvisdos' kodes.kode_mapel %}" class="btn btn-primary">Lihat data visualisasi</a></td>
+    <td><a href="{% url 'datanilai' kodes.kode_mapel %}" class="btn btn-primary">Lihat data murid yang memiliki nilai kecil</a></td>
+    <!-- <td><a href="{% url 'databesar' kodes.kode_mapel %}" class="btn btn-primary">Lihat data murid yang memiliki nilai besar</a></td> -->
+    {% endfor %} 
+    <td colspan="6" class="cs-text-center cs-empty-table"> Silahkan tekan tombol beri nilai kepada siswa yang ingin diberi nilai</td>
   </tr>
 </tbody>
 </table>   

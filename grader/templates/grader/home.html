@@ -126,7 +126,7 @@
     <br>
     <div class="container cs-content">
     <div class="row cs-section-header">
-        <p class="header container text-left">GRADER{{status2}}</p>
+        <p class="header container text-left">GRADER</p>
         <font color="#0097e6">
           <p class="header2 container text-left">Grade your student with real time data, built with django and sqlite. UwU</p>
         </font>
@@ -148,63 +148,14 @@
     <p class="idn text-center">Nilai
     <br><br><br><br><br><br>
     <img class="nil" src="{%static "grader/picture/grade.png" %}" alt="IMG" style="float: center;"></p>
-    <button type="button" class="nl btn btn-sm btn-dark">Nilai</button>
+    {% for namas in pengguna %}
+    <a class="nl btn btn-sm btn-light" href="{% url 'lihatNilai' namas.username %}">Nilai</a>>
+    {% endfor %}
     {% elif tipe == 'dosen' %}
     <a class="btn btn-sm btn-dark" href="{% url 'dosen' %}">Matkul</a>
     <a class="btn btn-sm btn-dark" href="{% url 'nilai' %}">Nilai</a>
     {% endif %}
     <hr>
-    <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">{{user}}</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Singer</th>
-                <th scope="col">Rating</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <tr>
-                
-                <td>
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                    </a>
-                    <a class="btn btn-sm btn-outline-danger"  data-toggle="modal" data-target="#exampleModalCenter">
-                      <i class="fa fa-trash" aria-hidden="true"></i> Delete
-                    </a>
-                </td>
-            </tr>
-              <tr>
-                <td colspan="6" class="cs-text-center cs-empty-table"> There is no song yet. Please add a song ! </td>
-              </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>{{user}}</p>
-            </div>
-            <div class="modal-footer">
-              <a class="btn btn-primary" data-dismiss="modal">Cancel</a>
-              <a class="btn btn-danger" id="btn-delete" href="">Delete</a>
-            </div>
-          </div>
-        </div>
-    </div>
 
     </div>
 

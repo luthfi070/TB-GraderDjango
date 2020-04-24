@@ -19,12 +19,12 @@ class RegisterForm(UserCreationForm):
 class Jenis(ModelForm):
     class Meta:
         model = t_pengguna
-        fields = ['tipe','username','kelas']
+        fields = ['tipe','username','kelas','nama_lengkap']
 
 class CreateMatkul(ModelForm):
     class Meta:
         model = t_matkul
-        fields = ['nama_mapel','username_dosen','kelas','nama_dosen']
+        fields = ['nama_mapel','kode_mapel','username_dosen','kelas','nama_dosen']
 
 class CreateNilai(ModelForm):
     class Meta:

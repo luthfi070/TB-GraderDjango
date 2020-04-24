@@ -40,6 +40,7 @@
         {% load widget_tweaks %}
         <div class="col-lg-6">
             <form method="post">
+                {{ nama }}
                 {% csrf_token %}
                     <div class="form-group row">
                         <label for="{{ field.id_for_label }}" class="col-lg-3 col-form-label cs-label-field">Nilai</label>
@@ -54,21 +55,21 @@
                         <br><br>
                         <label for="{{ field.id_for_label }}" class="col-lg-3 col-form-label cs-label-field">Nama</label>
                         <div class="col-lg-9">
-                            {% render_field form.nama class='form-control' value=nama %}
+                            {% render_field form.nama class='form-control' value=nama readonly="readonly" %}
                         </div>
                         <br><br>
-                        <label for="{{ field.id_for_label }}" class="col-lg-3 col-form-label cs-label-field">Kelas</label>
+                        <label for="{{ field.id_for_label }}" class="col-lg-3 col-form-label cs-label-field">Kelas ({{kelas}})</label>
                         <div class="col-lg-9">
-                            {% render_field form.kelas class='form-control'%}
+                            {% render_field form.kelas class='form-control' value=kelas %}
                         </div>
                         <br><br>
                         <label for="{{ field.id_for_label }}" class="col-lg-3 col-form-label cs-label-field">Nama Mapel</label>
                         <div class="col-lg-9">
-                            {% render_field form.nama_mapel class='form-control' %}
+                            {% render_field form.nama_mapel class='form-control' value=namam readonly="readonly" %}
                         </div>
                         <label for="{{ field.id_for_label }}" class="col-lg-3 col-form-label cs-label-field">Kode Mapel</label>
                         <div class="col-lg-9">
-                            {% render_field form.kode_mapel class='form-control' %}
+                            {% render_field form.kode_mapel class='form-control' value=kodem readonly="readonly" %}
                         </div>
                     </div>
                 <div class="form-group">
